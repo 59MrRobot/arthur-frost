@@ -23,7 +23,7 @@ export const ItemComponent: React.FC<Props> = React.memo(
           <div className="item-component__container">
             <p className='item-component__category'>{timeLineItem.Category}</p>
 
-            <h2 className='item-component__title'>{timeLineItem.Title}</h2>
+            <h3 className='item-component__title'>{timeLineItem.Title}</h3>
 
             <p>Episode: <span className='bold'>{timeLineItem.Episode}</span></p>
 
