@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './App.scss';
 import { ListComponent } from './components/ListComponent';
 import ReactPaginate from 'react-paginate';
@@ -61,13 +61,15 @@ const App: React.FC = () => {
   const currentItems = filteredList.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(filteredList.length / itemsPerPage);
 
-  const handlePageClick = (event: { selected: number; }) => {
-    const newOffset = (event.selected * itemsPerPage) % filteredList.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
-  };
+  const handlePageClick = useCallback(
+    (event: { selected: number; }) => {
+      const newOffset = (event.selected * itemsPerPage) % filteredList.length;
+      console.log(
+        `User requested page number ${event.selected}, which is offset ${newOffset}`
+      );
+      setItemOffset(newOffset);
+    }, [filteredList.length, itemsPerPage]
+  );
 
   return (
     <div className="app">
@@ -110,6 +112,7 @@ const App: React.FC = () => {
                 defaultValue={"0"}
                 onChange={(event) => {
                   setSelectedCategory(event.target.value)
+                  setItemOffset(0)
                 }}
                 className="app__filters-select"
               >
