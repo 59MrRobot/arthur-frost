@@ -110,6 +110,7 @@ const App: React.FC = () => {
                 defaultValue={"0"}
                 onChange={(event) => {
                   setSelectedCategory(event.target.value)
+                  setItemOffset(0)
                 }}
                 className="app__filters-select"
               >
