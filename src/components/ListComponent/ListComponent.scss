@@ -7,7 +7,7 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 16px calc((1200px - (1050px)) / 2);
+    gap: 24px calc((1200px - (1050px)) / 2);
 
     @include tablet {
       justify-content: space-between;
@@ -17,6 +17,12 @@
 
   &__item {
     width: 350px;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
 
     @include tablet {
       width: 300px;
