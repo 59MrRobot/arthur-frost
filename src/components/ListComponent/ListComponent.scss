@@ -6,9 +6,17 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 16px calc((1200px - (1050px)) / 2);
+
+    @media (max-width: 1024px) {
+      justify-content: space-between;
+    }
   }
 
   &__item {
     width: 350px;
+
+    @media (max-width: 1024px) {
+      width: 250px;
+    }
   }
 }

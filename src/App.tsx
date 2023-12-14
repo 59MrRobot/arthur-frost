@@ -9,6 +9,9 @@ const App: React.FC = () => {
   const [timelineList, setTimelineList] = useState<TimelineItem[] | []>([]);
   const [loading, setLoading] = useState(true);
   const [itemOffset, setItemOffset] = useState(0);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<String>('All');
+  const [filteredList, setFilteredList] = useState<TimelineItem[] | []>([]);
 
   const [itemsPerPage, setItemsPerPage] = useState(24);
   const [rangeDisplayed, setRangeDisplayed] = useState(5);
@@ -33,13 +36,31 @@ const App: React.FC = () => {
     fetchTimeline();
   }, []);
 
+  useEffect(() => {
+    const allCategories = timelineList.map((item) => item.Category)
+
+    const uniqueCategories = allCategories.filter((value, index, self) => self.indexOf(value) === index && value);
+
+    setCategories(uniqueCategories);
+  }, [timelineList]);
+
+  useEffect(() => {
+    const newList = timelineList.filter((item) => item.Category === selectedCategory);
+
+    if (selectedCategory === 'All') {
+      setFilteredList(timelineList);
+    } else {
+      setFilteredList(newList);
+    }
+  }, [selectedCategory, timelineList]);
+
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = timelineList.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(timelineList.length / itemsPerPage);
+  const currentItems = filteredList.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(filteredList.length / itemsPerPage);
 
   const handlePageClick = (event: { selected: number; }) => {
-    const newOffset = (event.selected * itemsPerPage) % timelineList.length;
+    const newOffset = (event.selected * itemsPerPage) % filteredList.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
@@ -62,12 +83,13 @@ const App: React.FC = () => {
               <select
                 name="items-per-page"
                 id="items-per-page"
+                defaultValue={"0"}
                 onChange={(event) => {
                   setItemsPerPage(Number(event.target.value))
                 }}
                 className="app__filters-select"
               >
-                <option selected disabled hidden>Choose the number of items per page</option>
+                <option value="0" disabled hidden>Choose the number of items per page</option>
                 <option value="12">12</option>
                 <option value="24">24</option>
                 <option value="36">36</option>
@@ -75,14 +97,31 @@ const App: React.FC = () => {
               </select>
 
               <select
+                name="categories"
+                id="categories"
+                defaultValue={"0"}
+                onChange={(event) => {
+                  setSelectedCategory(event.target.value)
+                }}
+                className="app__filters-select"
+              >
+                <option value="0" disabled hidden>Select Categories</option>
+                <option value="All">All</option>
+                {categories.map((category) => (
+                  <option value={category}>{category}</option>
+                ))}
+              </select>
+
+              <select
                 name="range-displayed"
                 id="range-displayed"
+                defaultValue={"0"}
                 onChange={(event) => {
                   setRangeDisplayed(Number(event.target.value))
                 }}
                 className="app__filters-select"
               >
-                <option selected disabled hidden>Choose the range displayed</option>
+                <option value="0" disabled hidden>Choose the range displayed</option>
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="15">15</option>
