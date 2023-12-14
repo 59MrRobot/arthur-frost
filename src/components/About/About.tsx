@@ -7,7 +7,6 @@ interface Props {
 
 export const About: React.FC<Props> = React.memo(
   ({ body }) => {
-
     return (
       <>
         {body && (
