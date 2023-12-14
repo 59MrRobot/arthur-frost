@@ -1,0 +1,29 @@
+@import '../../styles/mixins';
+
+.list-component {
+  &__list {
+    list-style: none;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 16px calc((1200px - (1050px)) / 2);
+
+    @include tablet {
+      justify-content: space-between;
+      gap: 40px 0;
+    }
+  }
+
+  &__item {
+    width: 350px;
+
+    @include tablet {
+      width: 300px;
+    }
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+}

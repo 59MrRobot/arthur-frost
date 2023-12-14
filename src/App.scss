@@ -1,0 +1,85 @@
+@import './styles/mixins';
+
+.app {
+  &__top {
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 4px 4px 8px slategrey;
+    background-color: #fff;
+
+    @include mobile {
+      padding: 8px 0;
+    }
+  }
+
+  &__logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  &__title {
+    color: slategrey;
+    font-family: 'Montserrat Alternates', sans-serif;
+
+    @include mobile {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__heading {
+    font-size: 2rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+    text-align: center;
+  }
+
+  &__container {
+    padding-top: 48px;
+
+    @include limitContentWidth;
+
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include tablet {
+      padding: 48px 48px 0;
+    }
+
+    @include mobile {
+      padding: 48px 8px 0;
+    }
+  }
+
+  &__filters {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(112, 128, 144, 0.527);
+    border-radius: 8px;
+
+    @include mobile {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &-select {
+      padding: 16px;
+      background-color: #ffffff5b;
+      border: 1px solid slategrey;
+      border-radius: 8px;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.italics {
+  color: grey;
+  font-style: italic;
+}

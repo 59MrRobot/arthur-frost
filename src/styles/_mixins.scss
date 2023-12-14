@@ -1,0 +1,16 @@
+@mixin limitContentWidth {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
