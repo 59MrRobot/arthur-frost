@@ -114,10 +114,15 @@ const App: React.FC = () => {
                 <option value="0" disabled>Select Category</option>
                 <option value="All">All</option>
                 {categories.map((category) => (
-                  <option value={category}>{category}</option>
+                  <option value={category} key={category}>{category}</option>
                 ))}
               </select>
           </div>
+
+          <p>
+            Showing items {itemOffset} - {filteredList.length < endOffset ? filteredList.length : endOffset}
+            <span className='italics'> ({filteredList.length})</span>
+          </p>
 
           {loading
             ? (<Loader />)
