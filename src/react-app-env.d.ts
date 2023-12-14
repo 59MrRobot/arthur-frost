@@ -19,3 +19,19 @@ interface TimelineItem {
   "Epoch": number;
   "AudioSize": number;
 }
+
+interface Body {
+  Id: number;
+  Background: string;
+  BackgroundOpacity: number;
+  About: string;
+  JS: string;
+  CSS: null;
+  Status: number;
+  createDate: {
+    date: string;
+    timezone_type: number;
+    timezone: string;
+  };
+  Epoch: number;
+}

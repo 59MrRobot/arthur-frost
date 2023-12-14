@@ -8,6 +8,7 @@ import { About } from './components/About';
 
 const App: React.FC = () => {
   const [timelineList, setTimelineList] = useState<TimelineItem[] | []>([]);
+  const [body, setBody] = useState<Body | null>(null)
   const [loading, setLoading] = useState(true);
   const [itemOffset, setItemOffset] = useState(0);
   const [categories, setCategories] = useState<string[]>([]);
@@ -25,6 +26,7 @@ const App: React.FC = () => {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         setTimelineList(JSON.parse(this.responseText).Timeline);
+        setBody(JSON.parse(this.responseText).Body[0]);
         setLoading(false);
       }
     }
@@ -80,7 +82,7 @@ const App: React.FC = () => {
           <h1 className="app__title">Dr. Arthur Frost</h1>
         </div>
 
-        <About />
+        {loading ? (<Loader />) : (<About body={body} />)}
 
         <h2 className="app__heading">Dr Arthur's Timeline</h2>
 
