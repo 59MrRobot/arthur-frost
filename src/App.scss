@@ -1,3 +1,5 @@
+@import './styles/mixins';
+
 .app {
   &__top {
     padding: 16px 0;
@@ -11,20 +13,27 @@
 
   &__title {
     color: slategrey;
+    font-family: 'Montserrat Alternates', sans-serif;
+  }
+
+  &__heading {
+    font-size: 2rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+    text-align: center;
   }
 
   &__container {
     padding-top: 48px;
-    margin: 0 auto;
-    max-width: 1200px;
+
+    @include limitContentWidth;
 
     display: flex;
     flex-direction: column;
     gap: 32px;
 
-    // @media (max-width: 1024px) {
-    //   padding: 48px 48px 0;
-    // }
+    @include tablet {
+      padding: 48px 48px 0;
+    }
   }
 
   &__filters {

@@ -4,6 +4,7 @@ import { ListComponent } from './components/ListComponent';
 import ReactPaginate from 'react-paginate';
 import './pagination.scss';
 import { Loader } from './components/Loader';
+import { About } from './components/About';
 
 const App: React.FC = () => {
   const [timelineList, setTimelineList] = useState<TimelineItem[] | []>([]);
@@ -14,7 +15,6 @@ const App: React.FC = () => {
   const [filteredList, setFilteredList] = useState<TimelineItem[] | []>([]);
 
   const [itemsPerPage, setItemsPerPage] = useState(24);
-  const [rangeDisplayed, setRangeDisplayed] = useState(5);
 
   const fetchTimeline = () => {
     let xhr = new XMLHttpRequest();
@@ -45,7 +45,7 @@ const App: React.FC = () => {
   }, [timelineList]);
 
   useEffect(() => {
-    const newList = timelineList.filter((item) => item.Category === selectedCategory);
+    const newList = [...timelineList].filter((item) => item.Category === selectedCategory);
 
     if (selectedCategory === 'All') {
       setFilteredList(timelineList);
@@ -72,8 +72,12 @@ const App: React.FC = () => {
       <div className="app__wrapper">
         <div className="app__top">
           <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="logo" />
-          <h1 className="app__title">Dr. Arthur Frost's Teachings</h1>
+          <h1 className="app__title">Dr. Arthur Frost</h1>
         </div>
+
+        <About />
+
+        <h2 className="app__heading">Dr Arthur's Timeline</h2>
 
         {loading
           ? (<Loader />)
@@ -89,7 +93,7 @@ const App: React.FC = () => {
                 }}
                 className="app__filters-select"
               >
-                <option value="0" disabled hidden>Choose the number of items per page</option>
+                <option value="0" disabled>Select the number of items per page</option>
                 <option value="12">12</option>
                 <option value="24">24</option>
                 <option value="36">36</option>
@@ -105,26 +109,11 @@ const App: React.FC = () => {
                 }}
                 className="app__filters-select"
               >
-                <option value="0" disabled hidden>Select Categories</option>
+                <option value="0" disabled>Select Category</option>
                 <option value="All">All</option>
                 {categories.map((category) => (
                   <option value={category}>{category}</option>
                 ))}
-              </select>
-
-              <select
-                name="range-displayed"
-                id="range-displayed"
-                defaultValue={"0"}
-                onChange={(event) => {
-                  setRangeDisplayed(Number(event.target.value))
-                }}
-                className="app__filters-select"
-              >
-                <option value="0" disabled hidden>Choose the range displayed</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
               </select>
             </div>
 
@@ -139,7 +128,7 @@ const App: React.FC = () => {
               nextLabel=">"
               nextClassName={"item next"}
               onPageChange={handlePageClick}
-              pageRangeDisplayed={rangeDisplayed}
+              pageRangeDisplayed={5}
               pageCount={pageCount}
               pageClassName={"item pagination-page"}
               previousLabel="<"

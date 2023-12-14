@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 .list-component {
   &__list {
     list-style: none;
@@ -7,16 +9,17 @@
     flex-wrap: wrap;
     gap: 16px calc((1200px - (1050px)) / 2);
 
-    @media (max-width: 1024px) {
+    @include tablet {
       justify-content: space-between;
+      gap: 40px 0;
     }
   }
 
   &__item {
     width: 350px;
 
-    @media (max-width: 1024px) {
-      width: 250px;
+    @include tablet {
+      width: 300px;
     }
   }
 }
