@@ -35,11 +35,12 @@
   &__title {
     font-size: 2rem;
     font-family: 'Montserrat Alternates', sans-serif;
+    text-align: center;
 
     @include mobile {
       font-size: 1.5rem;
 
-      text-align: center;
+
     }
   }
 
