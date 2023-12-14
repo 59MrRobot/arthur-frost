@@ -9,11 +9,24 @@
 
     box-shadow: 4px 4px 8px slategrey;
     background-color: #fff;
+
+    @include mobile {
+      padding: 8px 0;
+    }
+  }
+
+  &__logo {
+    width: 64px;
+    height: 64px;
   }
 
   &__title {
     color: slategrey;
     font-family: 'Montserrat Alternates', sans-serif;
+
+    @include mobile {
+      font-size: 1.5rem;
+    }
   }
 
   &__heading {
@@ -34,6 +47,10 @@
     @include tablet {
       padding: 48px 48px 0;
     }
+
+    @include mobile {
+      padding: 48px 8px 0;
+    }
   }
 
   &__filters {
@@ -42,6 +59,11 @@
     justify-content: space-between;
     background-color: rgba(112, 128, 144, 0.527);
     border-radius: 8px;
+
+    @include mobile {
+      flex-direction: column;
+      gap: 16px;
+    }
 
     &-select {
       padding: 16px;

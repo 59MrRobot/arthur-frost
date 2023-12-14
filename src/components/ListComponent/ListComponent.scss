@@ -21,5 +21,9 @@
     @include tablet {
       width: 300px;
     }
+
+    @include mobile {
+      width: 100%;
+    }
   }
 }

@@ -28,6 +28,11 @@
     @include tablet {
       padding: 16px 8px 0;
     }
+
+    @include mobile {
+      padding-top: 4px;
+      height: 150px;
+    }
   }
 
   &__category {
@@ -38,6 +43,10 @@
     font-size: 0.9rem;
     background-color: rgba(112, 128, 144, 0.267);
     color: #fff;
+
+    @include mobile {
+      font-size: 0.8rem;
+    }
   }
 
   &__title {
@@ -71,5 +80,10 @@
     padding: 0 16px 4px;
     font-size: 0.8rem;
     color: grey;
+
+    @include mobile {
+      padding: 0 4px 4px;
+      font-size: 0.7rem;
+    }
   }
 }
