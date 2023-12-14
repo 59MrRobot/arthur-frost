@@ -4,7 +4,7 @@ CRG Assessment - Dr. Arthur Frost Timeline
 
 ## Demo Link:
 
-Access my site at https://59mrrobot.github.io/ecommerce-site/
+Access my site at https://59mrrobot.github.io/arthur-frost/
 
 ## About The App:
 
