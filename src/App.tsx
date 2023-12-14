@@ -84,7 +84,10 @@ const App: React.FC = () => {
           <h1 className="app__title">Dr. Arthur Frost</h1>
         </div>
 
-        {loading ? (<Loader />) : (<About body={body} />)}
+        {loading
+          ? (<Loader />)
+          : (<About body={body} />)
+        }
 
         <h2 className="app__heading">Dr Frost's Timeline</h2>
 
